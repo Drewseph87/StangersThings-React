@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { updatePost, fetchPosts } from "../api";
 import { useNavigate, useParams } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
 
 const UpdatePostForm = ({ setLoading }) => {
   const navigate = useNavigate();

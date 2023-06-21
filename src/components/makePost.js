@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makePost } from "../api";
 import { useNavigate } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
 
 const NewPostForm = ({ setLoading }) => {
   const navigate = useNavigate();
@@ -56,8 +57,8 @@ const NewPostForm = ({ setLoading }) => {
   };
 
   return (
-    <div id="container">
-      <div id="navbar">
+    <div id="newpostcontainer">
+      <div id="newpostheader">
         Feel free to add your new product here! Fields with a star are required!
       </div>
       <form onSubmit={handleSubmit}>

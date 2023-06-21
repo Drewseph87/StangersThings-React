@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { deletePost, postMessage, fetchUserData, fetchPosts } from "../api";
 import { Loading } from "./Loading";
+import { Button } from "@mui/material";
 
 const ViewPost = ({ loading, setLoading }) => {
   const { postId } = useParams();
@@ -117,7 +118,7 @@ const ViewPost = ({ loading, setLoading }) => {
     console.log(post);
     return (
       <div>
-        <h3>Messages</h3>
+        <h3 id="postmessages">Messages</h3>
         {post.messages.length > 0 ? (
           post.messages.map((message) => (
             <div key={message._id}>

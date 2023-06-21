@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts, fetchUserData } from "../api";
+import Search from "./Search";
 import { useNavigate } from "react-router-dom";
+
+import CommonButtons from "./Common/CommonButtons";
 
 const RenderAllPosts = ({ setLoading }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const buttonStyles = {
+    fontSize: 12,
+    fontWeight: 700,
+    backgroundColor: "red",
+    color: "black",
+    "&:hover": {
+      backgroundColor: "blue",
+    },
+  };
 
   const [posts, setPosts] = useState([]);
 
@@ -31,9 +43,10 @@ const RenderAllPosts = ({ setLoading }) => {
 
   return (
     <>
-      <h1>Posts</h1>
+      <Search />
+      <div id="postheader">Posts</div>
       {posts.map((post) => (
-        <div className="posts" key={post._id}>
+        <div id="posts" key={post._id}>
           <h3>{post.title}</h3>
           <div>{post.author?.username || "Unknown User"}</div>
           <div>Description: {post.description}</div>
@@ -44,7 +57,13 @@ const RenderAllPosts = ({ setLoading }) => {
             {post.willDeliver ? "Will Deliver" : "Will NOT deliver"}
           </div>
           {token && (
-            <button onClick={() => handleViewPost(post._id)}>View Post</button>
+            <CommonButtons
+              variant="contained"
+              sx={buttonStyles}
+              onClick={() => handleViewPost(post._id)}
+            >
+              View Post
+            </CommonButtons>
           )}
         </div>
       ))}

@@ -31,7 +31,6 @@ const App = () => {
     <BrowserRouter>
       <div className="app">
         <Navbar token={token} setToken={setToken} />
-        <Search />
         <Routes>
           <Route
             path="/Register"

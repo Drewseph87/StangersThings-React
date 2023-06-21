@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchUserData } from "../api";
+import { Button } from "@mui/material";
 
 const Profile = () => {
   const [messagesToUser, setMessagesToUser] = useState([]);
@@ -44,8 +45,8 @@ const Profile = () => {
 
   return (
     <div>
-      <h1>Profile</h1>
-      <h2>Messages to You</h2>
+      <h1 id="profileheader">Profile</h1>
+      <h2 id="messagestoyou">Messages to You</h2>
       <ul>
         {messagesToUser.map((message) => (
           <li key={message._id}>
@@ -57,7 +58,7 @@ const Profile = () => {
           </li>
         ))}
       </ul>
-      <h2>Messages You Sent</h2>
+      <h2 id="messagestome">Messages You Sent</h2>
       <ul>
         {messagesFromUser.map((message) => (
           <li key={message._id}>
