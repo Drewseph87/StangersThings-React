@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { updatePost, fetchPosts } from "../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import CommonButtons from "./Common/CommonButtons";
 
 const UpdatePostForm = ({ setLoading }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const { postId } = useParams();
+
+  const buttonStyles = {
+    fontSize: 12,
+    fontWeight: 700,
+    border: "1px solid white",
+    backgroundColor: "red",
+    color: "black",
+    "&:hover": {
+      backgroundColor: "blue",
+    },
+  };
 
   const [post, setPost] = useState(null);
   const [title, setTitle] = useState("");
@@ -71,15 +82,20 @@ const UpdatePostForm = ({ setLoading }) => {
   };
 
   return (
-    <div id="container">
-      <div id="navbar">Feel free to update your post!</div>
-      <form onSubmit={handleSubmit}>
+    <div id="updatepost">
+      <div id="updatepostheader">Feel free to update your post!</div>
+      <form id="updatepostfields" onSubmit={handleSubmit}>
         <label htmlFor="Title">*Title:</label>
         <input
           placeholder="Title"
           type="text"
           name="Title"
           value={title}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid white",
+          }}
           onChange={(event) => setTitle(event.target.value)}
           required
         />
@@ -89,6 +105,11 @@ const UpdatePostForm = ({ setLoading }) => {
           type="text"
           name="Description"
           value={description}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid white",
+          }}
           onChange={(event) => setDescription(event.target.value)}
           required
         />
@@ -98,6 +119,11 @@ const UpdatePostForm = ({ setLoading }) => {
           type="text"
           name="Price"
           value={price}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid white",
+          }}
           onChange={(event) => setPrice(event.target.value)}
           required
         />
@@ -107,6 +133,11 @@ const UpdatePostForm = ({ setLoading }) => {
           type="text"
           name="Location"
           value={location}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid white",
+          }}
           onChange={(event) => setLocation(event.target.value)}
           required
         />
@@ -117,7 +148,13 @@ const UpdatePostForm = ({ setLoading }) => {
           checked={willDeliver}
           onChange={(event) => setWillDeliver(event.target.checked)}
         />
-        <button type="submit">Update Post</button>
+        <CommonButtons
+          variant="contained"
+          sx={buttonStyles}
+          onClick={handleSubmit}
+        >
+          Update Post
+        </CommonButtons>
       </form>
     </div>
   );

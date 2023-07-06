@@ -19,6 +19,8 @@ const RegisterNew = ({ setToken, setLoading }) => {
   const buttonStyles = {
     fontSize: 12,
     fontWeight: 700,
+    color: "white",
+    border: "1px solid white",
     backgroundColor: "red",
     "&:hover": {
       backgroundColor: "blue",
@@ -140,6 +142,7 @@ const RegisterNew = ({ setToken, setLoading }) => {
                 </Link>
               </Grid>
             </Grid>
+            <div>{errorMessage}</div>
           </Box>
         </Box>
       </Container>{" "}

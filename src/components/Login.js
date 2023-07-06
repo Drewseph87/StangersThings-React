@@ -19,6 +19,8 @@ const LoginForm = ({ setToken, setLoading }) => {
   const buttonStyles = {
     fontSize: 12,
     fontWeight: 700,
+    color: "white",
+    border: "1px solid white",
     backgroundColor: "red",
     "&:hover": {
       backgroundColor: "blue",
@@ -93,13 +95,12 @@ const LoginForm = ({ setToken, setLoading }) => {
               margin="normal"
               required
               fullWidth
-              id="userman"
+              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               label="Username"
-              name="email"
-              autoComplete="email"
-              autoFocus
+              name="Username"
+              autoComplete="current-username"
             />
             <TextField
               margin="normal"
@@ -143,6 +144,7 @@ const LoginForm = ({ setToken, setLoading }) => {
                 </Link>
               </Grid>
             </Grid>
+            <div>{errorMessage}</div>
           </Box>
         </Box>
       </Container>{" "}

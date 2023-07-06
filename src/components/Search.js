@@ -51,9 +51,9 @@ const SearchResults = () => {
   };
 
   return (
-    <div id="searchbox">
+    <div>
       {loading || searching ? (
-        <p>Loading...</p>
+        <p id="loadingsearch">Loading...</p>
       ) : searchResults.length > 0 ? (
         searchResults.map((post) => (
           <div className="post" key={post._id}>
@@ -66,38 +66,10 @@ const SearchResults = () => {
           </div>
         ))
       ) : (
-        <p>No matching posts found.</p>
+        <p id="nopostsfound">No matching posts found.</p>
       )}
     </div>
   );
 };
 
 export default SearchResults;
-
-// return (
-//   <div id="searchbox">
-//     <input
-//       id="insearchbox"
-//       type="text"
-//       placeholder="Search..."
-//       name="Search..."
-//       value={searchTerm}
-//       onSubmit={handleSearch}
-//     />
-//     <CommonButtons
-//       id="searchbutton"
-//       size="medium"
-//       variant="contained"
-//       sx={buttonStyles}
-//       type="submit"
-//     >
-//       Search
-//     </CommonButtons>
-//     <ul>
-//       {postsToDisplay.map((post) => (
-//         <li key={post.id}>{post.title}</li>
-//       ))}
-//     </ul>
-//   </div>
-// );
-// };

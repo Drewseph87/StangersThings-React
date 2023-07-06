@@ -2,12 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { deletePost, postMessage, fetchUserData, fetchPosts } from "../api";
 import { Loading } from "./Loading";
-import { Button } from "@mui/material";
+import CommonButtons from "./Common/CommonButtons";
 
 const ViewPost = ({ loading, setLoading }) => {
   const { postId } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  const buttonStyles = {
+    fontSize: 12,
+    fontWeight: 700,
+    border: "1px solid white",
+    backgroundColor: "red",
+    "&:hover": {
+      backgroundColor: "blue",
+    },
+  };
 
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);
@@ -54,6 +64,7 @@ const ViewPost = ({ loading, setLoading }) => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await postMessage(token, postId, content);
+      setContent("");
       console.log("Message sent successfully");
       console.log(response);
 
@@ -83,17 +94,35 @@ const ViewPost = ({ loading, setLoading }) => {
 
   const renderPostDetails = () => {
     return (
-      <div>
-        <h2>{post.title}</h2>
-        <p>Author: {post.author?.username || "Unknown"}</p>
+      <div id="viewpost">
+        <h2 id="viewposttitle">{post.title}</h2>
+        <p id="viewpostusername">
+          Username: {post.author?.username || "Unknown"}
+        </p>
         <p>Description: {post.description}</p>
         <p>Price: {post.price}</p>
         <p>Location: {post.location}</p>
         <p>Will Deliver: {post.willDeliver ? "Yes" : "No"}</p>
         {token && post.isAuthor && (
           <>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <CommonButtons
+              variant="contained"
+              size="medium"
+              sx={buttonStyles}
+              type="submit"
+              onClick={handleEdit}
+            >
+              Edit
+            </CommonButtons>
+            <CommonButtons
+              variant="contained"
+              size="medium"
+              sx={buttonStyles}
+              type="submit"
+              onClick={handleDelete}
+            >
+              Delete
+            </CommonButtons>
           </>
         )}
       </div>
@@ -102,14 +131,27 @@ const ViewPost = ({ loading, setLoading }) => {
 
   const renderMessageForm = () => {
     return (
-      <div>
-        <h3>Send Message</h3>
+      <div id="sendmessage">
+        <h3 id="sendmessagetitle">Send Message</h3>
         <textarea
           value={content}
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            border: "1px solid white",
+          }}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Type your message here..."
         ></textarea>
-        <button onClick={handleMessage}>Send</button>
+        <CommonButtons
+          variant="contained"
+          size="medium"
+          sx={buttonStyles}
+          type="submit"
+          onClick={handleMessage}
+        >
+          Send
+        </CommonButtons>
       </div>
     );
   };
@@ -117,13 +159,13 @@ const ViewPost = ({ loading, setLoading }) => {
   const renderMessages = () => {
     console.log(post);
     return (
-      <div>
+      <div id="allmessages">
         <h3 id="postmessages">Messages</h3>
         {post.messages.length > 0 ? (
           post.messages.map((message) => (
             <div key={message._id}>
-              <p>To: {post.author.username}</p>
-              <p>From: {message.fromUser?.username}</p>
+              <p id="messageusername1">To: {post.author.username}</p>
+              <p id="messageusername2">From: {message.fromUser?.username}</p>
 
               <p>{message.content}</p>
             </div>

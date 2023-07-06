@@ -46,28 +46,34 @@ const Profile = () => {
   return (
     <div>
       <h1 id="profileheader">Profile</h1>
-      <h2 id="messagestoyou">Messages to You</h2>
-      <ul>
+      <h2 id="messagestome"> Messages to Me</h2>
+      <ul id="messagestomefield">
         {messagesToUser.map((message) => (
-          <li key={message._id}>
+          <p key={message._id}>
+            <p id="messageauthor1">Author: {message.fromUser.username}</p>
             <p>Message: {message.content}</p>
-            <p>
+            <p id="linktopost1">
               Link to Post:{" "}
-              <a href={`/posts/${message.post._id}`}>{message.post.title}</a>
+              <a id="linkpostlink1" href={`/post/${message.post._id}`}>
+                {message.post.title}
+              </a>
             </p>
-          </li>
+          </p>
         ))}
       </ul>
-      <h2 id="messagestome">Messages You Sent</h2>
+      <h2 id="messagesfromme">Messages You've Sent</h2>
       <ul>
         {messagesFromUser.map((message) => (
-          <li key={message._id}>
+          <p id="messagesfrommefield" key={message._id}>
+            <p id="messageauthor2">Author: {message.fromUser.username}</p>
             <p>Message: {message.content}</p>
-            <p>
+            <p id="linktopost2">
               Link to Post:{" "}
-              <a href={`/posts/${message.post._id}`}>{message.post.title}</a>
+              <a id="linkpostlink2" href={`/post/${message.post._id}`}>
+                {message.post.title}
+              </a>
             </p>
-          </li>
+          </p>
         ))}
       </ul>
     </div>

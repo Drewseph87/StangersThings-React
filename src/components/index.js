@@ -8,3 +8,4 @@ export { default as ViewPost } from "./ViewPost";
 export { default as MakePost } from "./MakePost";
 export { default as UpdatePost } from "./UpdatePost";
 export { default as Search } from "./Search";
+export { default as SearchBar } from "./SearchBar";
